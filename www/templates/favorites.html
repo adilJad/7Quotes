@@ -1,0 +1,20 @@
+<ion-view view-title="Your favorites!">
+<ion-nav-buttons side="secondary">
+	<button class="button button-icon icon ion-ios-minus-outline"
+          ng-click="data.showDelete = !data.showDelete"></button>
+</ion-nav-buttons>
+<ion-content has-subheader="false">
+<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
+<ion-list show-delete="data.showDelete">
+
+	<ion-item class="item-text-wrap" ng-repeat="q in fvquotes track by $index">
+		<h2 class="title">{{q.author}}</h2>
+		<p class="padding">{{q.quote}}</p>
+		<ion-delete-button class="ion-minus-circled"
+                       ng-click="deleteQuote(q)">
+    	</ion-delete-button>
+	</ion-item>
+
+</ion-list>
+</ion-content>
+</ion-view>

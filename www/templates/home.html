@@ -1,0 +1,40 @@
+<ion-view view-title="Quotes">
+<ion-nav-buttons side="secondary">
+<button class="button button-icon ion-loop" ng-click="refreshQuotes()"></button>
+<button class="button button-icon ion-ios-bookmarks-outline" ui-sref="favorites"></button>
+</ion-nav-buttons>
+<ion-content has-subheader="false">
+<td-cards>
+  <td-card ng-repeat="q in quotes track by $index" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" on-snap-back="cardSnappedBack()" ng-click="showDetails($index)">
+    <div class="card">
+	  <div class="item item-divider">
+	    {{q.author}}
+	  </div>
+	  <img ng-show="showHeart" src="img/heart.png">
+	  <img ng-show="showX" src="img/cross.png">
+	  <div class="item item-text-wrap" style="height: 85%; overflow-y: scroll;">
+	    {{q.quote | limitTo: 250}}{{q.quote.length > 250? '&hellip;' : '' }}
+	  </div>
+	</div>
+
+  </td-card>
+ 
+</td-cards>
+<div class="button-bar bottom">
+  <button class="button button-icon icon-left ion-share" ng-click="shareQuote()">Share</button>
+</div>
+
+<!-- <ion-list>
+<ion-item ng-repeat="quote in quotes">
+<div class="card">
+  <div class="item item-divider">
+    {{quote.author}}
+  </div>
+  <div class="item item-text-wrap">
+    {{quote.quote}}
+  </div>
+</div>
+</ion-item>
+</ion-list> -->
+</ion-content>
+</ion-view>
